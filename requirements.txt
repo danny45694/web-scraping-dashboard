@@ -1,0 +1,19 @@
+# Web Scraping
+selenium
+webdriver-manager
+lxml
+requests
+
+# Data Cleaning & Transformation
+pandas
+numpy
+regex
+
+# Visualization / Dashboard
+dash
+dash-bootstrap-components
+plotly
+matplotlib
+
+# Environment / Utilities
+python-dotenv
