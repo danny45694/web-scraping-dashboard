@@ -5,9 +5,10 @@ import re
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+
 
 driver = webdriver.Chrome()
 
@@ -31,23 +32,39 @@ driver.get("https://www.timeanddate.com/weather/")
 #Extract website
 
 try:
-    wait = WebDriverWait(driver, 10)
-    body = driver.find_element(By.CSS_SELECTOR, 'body')
-    
-    
-    # table class ="zebra fw tb-theme"
+    wait = WebDriverWait(driver, 15)
 
-    locations = body.find_elements(By.CSS_SELECTOR, "table.zebra.fw.tb-theme")
+    table = wait.until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "table.zebra.fw.tb-theme"))
+    )
+    body = driver.find_element(By.CSS_SELECTOR, 'body')
+    tbody = body.find_element (By.TAG_NAME, 'tbody')
+    rows = tbody.find_elements(By.CSS_SELECTOR, 'tr')
+
     results = []
-    for location in locations:
-        tbHeader = location.find_element(By.CSS_SELECTOR, '.tb-header')
-        place = location.find_element (By.TAG_NAME, 'tbody')
-        data = {
-            "location": place
+
+    for row in rows:
+        city_links = row.find_elements(By.CSS_SELECTOR, 'td a')
+        city = city_links[0].text.strip()
+        #date_time = cities.find_elements(By.CLASS_NAME, '.r')
+        temp_els = row.find_elements(By.CSS_SELECTOR, 'td > .rbi')
+        temperature = temp_els[0].text.strip()
+        
+        city_data = {
+            "City": city,
+            "Temperature": temperature
         }
-        results.append(data)
-except:
+        results.append(city_data)
+        break
+    print(results[0] if results else "No data row found")
+except Exception as e:
+    print("Error:", repr(e))
+finally:
     driver.quit()
+
+
+#If I want to see exactly what I am targeting.
+    #print(rows[0].get_attribute("outerHTML"))  # first row’s HTML
 
 
 driver.quit()
