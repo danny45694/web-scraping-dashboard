@@ -6,11 +6,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
-url = "https://www.baseball-almanac.com/yearmenu.shtml"
-driver.get(url)
+
+driver.get("https://www.timeanddate.com/weather/")
 time.sleep(4)
 
 
@@ -24,7 +26,36 @@ time.sleep(4)
         
 '''
 
-#Extract relevant details (Year, event names, stats)
+
+
+#Extract website
+
+try:
+    body = driver.find_element(By.CSS_SELECTOR, 'body')
+    
+    
+    # table class ="zebra fw tb-theme"
+
+    locations = body.find_elements(By.CSS_SELECTOR, "table.zebra.fw.tb-theme")
+    results = []
+    for location in locations:
+        tbHeader = locations.find_element(By.CSS_SELECTOR, 'tb-header')
+        place = locations.find_elements(By.CSS_SELECTOR, 'a.p0s')
+        print(len(place))
+        data = {
+            "location": place
+        }
+        results.append(data)
+    print(results[0])
+except:
+    driver.quit()
+
+
+driver.quit()
+
+
+
+
 
 #Find year, pull data
 
@@ -47,4 +78,3 @@ time.sleep(4)
 #with open('output.csv', 'w', newline='') as csvfile:
     #writer = csv.writer(csvfile)
     #write.writerows(data) -----> data being from the datasets
-
