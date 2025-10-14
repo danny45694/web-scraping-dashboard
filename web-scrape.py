@@ -35,30 +35,49 @@ try:
     wait = WebDriverWait(driver, 15)
 
     table = wait.until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, "table.zebra.fw.tb-theme"))
+        EC.presence_of_element_located((By.CSS_SELECTOR, ".zebra.fw.tb-theme"))
     )
-    body = driver.find_element(By.CSS_SELECTOR, 'body')
-    tbody = body.find_element (By.TAG_NAME, 'tbody')
+    tbody = table.find_element (By.TAG_NAME, 'tbody')
     rows = tbody.find_elements(By.CSS_SELECTOR, 'tr')
-
     results = []
 
     for row in rows:
         city_links = row.find_elements(By.CSS_SELECTOR, 'td a')
         city = city_links[0].text.strip()
-        #date_time = cities.find_elements(By.CLASS_NAME, '.r')
-        temp_els = row.find_elements(By.CSS_SELECTOR, 'td > .rbi')
-        temperature = temp_els[0].text.strip()
+        
+        date_time = row.find_element(By.CLASS_NAME, 'r').text
+        
+        temp_els = row.find_elements(By.CLASS_NAME, 'rbi')
+        print(len(temp_els))
+        if len(temp_els) >= 0:
+            first_temp_text = temp_els[0].text
+            second_temp_text = temp_els[1].text
+            third_element_text = temp_els[2].text
+           
+            el = driver.find_element(By.CSS_SELECTOR, "td.rbi")
+            print(el.get_attribute("outerHTML"))
+            time.sleep(3)
+            print(el.get_attribute("outerHTML"))
+
+            #print(f"Text of the first element: {first_temp_text}")
+            #print(f"Text of the second element: {second_temp_text}")
+            #print(f"Text of the third element: {third_element_text}")
+        else:
+            print(f"Less than 3 elements found")
+
+        
+
+        #temperature = temp_els[0].text.strip()
         
         city_data = {
             "City": city,
-            "Temperature": temperature
+            #"Temperature": temperature
         }
         results.append(city_data)
         break
-    print(results[0] if results else "No data row found")
-except Exception as e:
-    print("Error:", repr(e))
+    #print(results[0] if results else "No data row found")
+#except Exception as e:
+    #print("Error:", repr(e))
 finally:
     driver.quit()
 
