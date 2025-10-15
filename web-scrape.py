@@ -41,40 +41,28 @@ try:
     rows = tbody.find_elements(By.CSS_SELECTOR, 'tr')
     results = []
 
-    for row in rows:
-        city_links = row.find_elements(By.CSS_SELECTOR, 'td a')
-        city = city_links[0].text.strip()
-        
-        date_time = row.find_element(By.CLASS_NAME, 'r').text
-        
-        temp_els = row.find_elements(By.CLASS_NAME, 'rbi')
-        print(len(temp_els))
-        if len(temp_els) >= 0:
-            first_temp_text = temp_els[0].text
-            second_temp_text = temp_els[1].text
-            third_element_text = temp_els[2].text
-           
-            el = driver.find_element(By.CSS_SELECTOR, "td.rbi")
-            print(el.get_attribute("outerHTML"))
-            time.sleep(3)
-            print(el.get_attribute("outerHTML"))
+    for row in rows: #For each row in rows
+        for j in range(1): #for j = num in range of 2
+            city_links = row.find_elements(By.CSS_SELECTOR, 'td a')
+            date_times = row.find_elements(By.CLASS_NAME, 'r')
+            temps = row.find_elements(By.CLASS_NAME, 'rbi')
+            
+            #for I in range of city links (City links should contain 3 objects)
+            for i in range(len(city_links)):
 
-            #print(f"Text of the first element: {first_temp_text}")
-            #print(f"Text of the second element: {second_temp_text}")
-            #print(f"Text of the third element: {third_element_text}")
-        else:
-            print(f"Less than 3 elements found")
-
-        
-
-        #temperature = temp_els[0].text.strip()
-        
-        city_data = {
-            "City": city,
-            #"Temperature": temperature
-        }
-        results.append(city_data)
-        break
+                city = city_links[i].text.strip()
+                date_time = date_times[i].text.strip()
+                temperature = temps[i].text.strip()
+            
+            
+                city_data = {
+                    "City": city,
+                    "Date and Time": date_time,
+                    "Temperature": temperature
+                }
+                results.append(city_data)
+        break #This break is out of the j for loop but with in the row in rows loop. Should stop the rows from all firing.
+    print(results)
     #print(results[0] if results else "No data row found")
 #except Exception as e:
     #print("Error:", repr(e))
