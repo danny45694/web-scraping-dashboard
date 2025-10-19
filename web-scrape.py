@@ -62,7 +62,7 @@ df = df.dropna()
 
 
     #------------ Temp categories --------------
-temps_categories = ['very cold','cold','comfortable', 'hot', 'very hot']
+category_order = ['very cold','cold','comfortable','hot','very hot']
 
 def categorize(value):
     if value <= 32:
@@ -90,18 +90,38 @@ df['temp category'] = df['temp values'].apply(categorize)
 
 #----------------- grouping ----------------
 
-hottest = df.groupby('City')['temp values'].sort_values(ascending=False)
 
-coldest = df.groupby('City')['temp values'].sort_values(ascending=True)
+
+category_counts = (
+    df['temp category']
+      .value_counts()
+      .reindex(category_order, fill_value=0)
+      .rename_axis('temp category')
+      .reset_index(name='count')
+)
+
+hottest = df.sort_values('temp values', ascending=False)
+coldest = df.sort_values('temp values', ascending=True)
 
 #group/filter
     #Filter for cold, comfortable, and hot
 
+def filter_cities_by_category(df, category, sort_by='City'):
+    
+    cols = ['City', 'Temperature', 'temp values', 'temp category', 'date_time']
+    
+    out = df.loc[df['temp category'].eq(category), cols]
+    
+    if sort_by in out.columns:
+        out = out.sort_values(sort_by, ascending=True)
+    return out
 
-# sort by date_time
+#-----Testing--------
+#cold_cities = filter_cities_by_category(df, 'cold', sort_by='temp values')         # lowest→highest temp
+#hot_cities  = filter_cities_by_category(df, 'hot',  sort_by='date_time')           # earliest→latest time
+#comfy_cities = filter_cities_by_category(df, 'comfortable', sort_by='City') 
 
 
-# Count num of countries in each category, aggregate it to pie chart showing majority and minority
 
 
 # -------------- Export to csv ------------------
