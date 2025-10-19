@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+import re
+
 
 driver = webdriver.Chrome()
 driver.get('https://www.timeanddate.com/weather/')
@@ -31,7 +33,7 @@ for row in rows:
         temp_td = city_td.find_element(
             By.XPATH, "following-sibling::td[@class='rbi'][1]"
         )
-        temperature = temp_td.text.replace('\xa0', ' ').strip()
+        temperature = temp_td.text.replace('\xa0', ' ').strip() #Replace non-breaking space with normal space.
 
         results.append({
             "City": city,
@@ -40,10 +42,60 @@ for row in rows:
         })
 
 print(results)
-
 driver.quit()
 
 #Export to csv
 
 df = pd.DataFrame(results)
+
+#---------------- Data Cleanup ---------------
+
+#removed leading and trailing whitespace during initial scrape with .strip()
+df = df.drop_duplicates()
+df = df.dropna()
+
+
+
+
+#-------------- Data Transformations ------------
+
+
+
+    #------------ Temp categories --------------
+temps_categories = ['very cold','cold','comfortable', 'hot', 'very hot']
+
+def categorize(value):
+    if value <= 32:
+        return 'very cold'
+    elif value <= 60:
+        return 'cold'
+    elif value <= 79:
+        return 'comfortable'
+    elif value <= 89:
+        return 'hot' 
+    else:
+        return 'very hot'
+    
+
+ #--------- Strip and convert temp to int -------
+def stripSTR(value):
+    stripped_string = re.sub(r'\s.*', "", value)
+    converted_value = int(stripped_string)
+    return converted_value
+    
+df['temp values'] = df['Temperature'].apply(stripSTR)
+
+df['temp category'] = df['temp values'].apply(categorize)
+
+
+#----------------- grouping ----------------
+
+hottest = df.groupby('City')['temp values'].sort_values(ascending=False)
+
+coldest = df.groupby('City')['temp values'].sort_values(ascending=True)
+
+
+
+
+# -------------- Export to csv ------------------
 df.to_csv("weather_data.csv", index=False)
