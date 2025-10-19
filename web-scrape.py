@@ -94,7 +94,14 @@ hottest = df.groupby('City')['temp values'].sort_values(ascending=False)
 
 coldest = df.groupby('City')['temp values'].sort_values(ascending=True)
 
+#group/filter
+    #Filter for cold, comfortable, and hot
 
+
+# sort by date_time
+
+
+# Count num of countries in each category, aggregate it to pie chart showing majority and minority
 
 
 # -------------- Export to csv ------------------
