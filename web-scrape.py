@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import re
 
-
 driver = webdriver.Chrome()
 driver.get('https://www.timeanddate.com/weather/')
 
@@ -21,19 +20,27 @@ for row in rows:
     city_tds = row.find_elements(By.XPATH, ".//td[a]")
 
     for city_td in city_tds:
-        city = city_td.find_element(By.TAG_NAME, "a").text.strip()
+        # City (skip row if no <a>)
+        a_tags = city_td.find_elements(By.TAG_NAME, "a")
+        if not a_tags:
+            continue
+        city = a_tags[0].text.strip()
 
         # 3) The time td: class='r' AND id starts with 'p' (e.g., p0, p47, p94)
-        time_td = city_td.find_element(
+        date_time = None
+        time_candidates = city_td.find_elements(
             By.XPATH, "following-sibling::td[@class='r' and starts-with(@id,'p')][1]"
         )
-        date_time = time_td.text.strip()
+        if time_candidates:
+            date_time = time_candidates[0].text.strip()
 
         # 4) The next temperature td with class='rbi'
-        temp_td = city_td.find_element(
+        temperature = None
+        temp_candidates = city_td.find_elements(
             By.XPATH, "following-sibling::td[@class='rbi'][1]"
         )
-        temperature = temp_td.text.replace('\xa0', ' ').strip() #Replace non-breaking space with normal space.
+        if temp_candidates:
+            temperature = temp_candidates[0].text.replace('\xa0', ' ').strip()
 
         results.append({
             "City": city,
@@ -41,7 +48,7 @@ for row in rows:
             "Temperature": temperature
         })
 
-print(results)
+#print(results) #Checking output to ensure it works.
 driver.quit()
 
 #Export to csv
@@ -49,22 +56,18 @@ driver.quit()
 df = pd.DataFrame(results)
 
 #---------------- Data Cleanup ---------------
-
-#removed leading and trailing whitespace during initial scrape with .strip()
+# removed leading and trailing whitespace during initial scrape with .strip()
 df = df.drop_duplicates()
 df = df.dropna()
 
-
-
-
 #-------------- Data Transformations ------------
 
-
-
-    #------------ Temp categories --------------
+#------------ Temp categories --------------
 category_order = ['very cold','cold','comfortable','hot','very hot']
 
 def categorize(value):
+    if value is None:
+        return None
     if value <= 32:
         return 'very cold'
     elif value <= 60:
@@ -76,21 +79,22 @@ def categorize(value):
     else:
         return 'very hot'
     
-
- #--------- Strip and convert temp to int -------
+#--------- Strip and convert temp to int -------
 def stripSTR(value):
-    stripped_string = re.sub(r'\s.*', "", value)
-    converted_value = int(stripped_string)
-    return converted_value
-    
+    if not isinstance(value, str):
+        return None
+    m = re.match(r"^(-?\d+)", value.strip())
+    return int(m.group(1)) if m else None
+
 df['temp values'] = df['Temperature'].apply(stripSTR)
+
+# Drop rows where temp couldn't be parsed (optional, but avoids errors)
+df = df.dropna(subset=['temp values'])
+df['temp values'] = df['temp values'].astype(int)
 
 df['temp category'] = df['temp values'].apply(categorize)
 
-
 #----------------- grouping ----------------
-
-
 
 category_counts = (
     df['temp category']
@@ -103,26 +107,15 @@ category_counts = (
 hottest = df.sort_values('temp values', ascending=False)
 coldest = df.sort_values('temp values', ascending=True)
 
-#group/filter
-    #Filter for cold, comfortable, and hot
 
+# Filter for cold, comfortable, and hot etc.
 def filter_cities_by_category(df, category, sort_by='City'):
-    
-    cols = ['City', 'Temperature', 'temp values', 'temp category', 'date_time']
-    
+    cols = ['City', 'Temperature', 'temp values', 'temp category', 'Date and Time']
     out = df.loc[df['temp category'].eq(category), cols]
-    
     if sort_by in out.columns:
         out = out.sort_values(sort_by, ascending=True)
     return out
 
-#-----Testing--------
-#cold_cities = filter_cities_by_category(df, 'cold', sort_by='temp values')         # lowest→highest temp
-#hot_cities  = filter_cities_by_category(df, 'hot',  sort_by='date_time')           # earliest→latest time
-#comfy_cities = filter_cities_by_category(df, 'comfortable', sort_by='City') 
-
-
-
-
 # -------------- Export to csv ------------------
 df.to_csv("weather_data.csv", index=False)
+print(f"Saved {len(df)} rows to weather_data.csv")

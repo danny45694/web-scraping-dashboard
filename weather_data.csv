@@ -1,141 +1,141 @@
-City,Date and Time,Temperature
-Accra,Sat 11:25 pm,81 °F
-Edmonton,Sat 5:25 pm,54 °F
-Nassau,Sat 7:25 pm,79 °F
-Addis Ababa,Sun 2:25 am,55 °F
-Frankfurt,Sun 1:25 am,45 °F
-New Delhi,Sun 4:55 am,72 °F
-Adelaide,Sun 9:55 am,78 °F
-Guatemala City,Sat 5:25 pm,68 °F
-New Orleans,Sat 6:25 pm,80 °F
-Algiers,Sun 12:25 am,73 °F
-Halifax,Sat 8:25 pm,50 °F
-New York,Sat 7:25 pm,61 °F
-Almaty,Sun 4:25 am,48 °F
-Hanoi,Sun 6:25 am,77 °F
-Oslo,Sun 1:25 am,33 °F
-Amman,Sun 2:25 am,59 °F
-Harare,Sun 1:25 am,71 °F
-Ottawa,Sat 7:25 pm,57 °F
-Amsterdam,Sun 1:25 am,46 °F
-Havana,Sat 7:25 pm,81 °F
-Paris,Sun 1:25 am,50 °F
-Anadyr,Sun 11:25 am,15 °F
-Helsinki,Sun 2:25 am,28 °F
-Perth,Sun 7:25 am,59 °F
-Anchorage,Sat 3:25 pm,45 °F
-Hong Kong,Sun 7:25 am,84 °F
-Philadelphia,Sat 7:25 pm,65 °F
-Ankara,Sun 2:25 am,55 °F
-Honolulu,Sat 1:25 pm,88 °F
-Phoenix,Sat 4:25 pm,85 °F
-Antananarivo,Sun 2:25 am,59 °F
-Houston,Sat 6:25 pm,88 °F
-Prague,Sun 1:25 am,34 °F
-Asuncion,Sat 8:25 pm,70 °F
-Indianapolis,Sat 7:25 pm,73 °F
-Reykjavik,Sat 11:25 pm,36 °F
-Athens,Sun 2:25 am,70 °F
-Islamabad,Sun 4:25 am,69 °F
-Rio de Janeiro,Sat 8:25 pm,73 °F
-Atlanta,Sat 7:25 pm,77 °F
-Istanbul,Sun 2:25 am,63 °F
-Riyadh,Sun 2:25 am,72 °F
-Auckland,Sun 12:25 pm,70 °F
-Jakarta,Sun 6:25 am,76 °F
-Rome,Sun 1:25 am,61 °F
-Baghdad,Sun 2:25 am,85 °F
-Jerusalem,Sun 2:25 am,61 °F
-Salt Lake City,Sat 5:25 pm,63 °F
-Bangkok,Sun 6:25 am,81 °F
-Johannesburg,Sun 1:25 am,58 °F
-San Francisco,Sat 4:25 pm,73 °F
-Barcelona,Sun 1:25 am,63 °F
-Karachi,Sun 4:25 am,72 °F
-San Juan,Sat 7:25 pm,83 °F
-Beijing,Sun 7:25 am,47 °F
-Kathmandu,Sun 5:10 am,63 °F
-San Salvador,Sat 5:25 pm,75 °F
-Beirut,Sun 2:25 am,72 °F
-Kingston,Sat 6:25 pm,86 °F
-Santiago,Sat 8:25 pm,73 °F
-Belgrade,Sun 1:25 am,55 °F
-Kinshasa,Sun 12:25 am,79 °F
-Santo Domingo,Sat 7:25 pm,90 °F
-Bengaluru,Sun 4:55 am,70 °F
-Kiritimati,Sun 1:25 pm,86 °F
-São Paulo,Sat 8:25 pm,66 °F
-Berlin,Sun 1:25 am,30 °F
-Kolkata,Sun 4:55 am,79 °F
-Seattle,Sat 4:25 pm,54 °F
-Bogota,Sat 6:25 pm,59 °F
-Kuala Lumpur,Sun 7:25 am,79 °F
-Seoul,Sun 8:25 am,57 °F
-Boston,Sat 7:25 pm,54 °F
-Kuwait City,Sun 2:25 am,85 °F
-Shanghai,Sun 7:25 am,66 °F
-Brasilia,Sat 8:25 pm,77 °F
-Kyiv,Sun 2:25 am,45 °F
-Singapore,Sun 7:25 am,81 °F
-Brisbane,Sun 9:25 am,76 °F
-La Paz,Sat 7:25 pm,50 °F
-Sofia,Sun 2:25 am,51 °F
-Brussels,Sun 1:25 am,48 °F
-Lagos,Sun 12:25 am,79 °F
-St. John's,Sat 8:55 pm,46 °F
-Bucharest,Sun 2:25 am,55 °F
-Lahore,Sun 4:25 am,72 °F
-Stockholm,Sun 1:25 am,32 °F
-Budapest,Sun 1:25 am,37 °F
-Las Vegas,Sat 4:25 pm,77 °F
-Suva,Sun 11:25 am,81 °F
-Buenos Aires,Sat 8:25 pm,61 °F
-Lima,Sat 6:25 pm,67 °F
-Sydney,Sun 10:25 am,73 °F
-Cairo,Sun 2:25 am,66 °F
-Lisbon,Sun 12:25 am,68 °F
-Taipei,Sun 7:25 am,77 °F
-Calgary,Sat 5:25 pm,50 °F
-London,Sun 12:25 am,54 °F
-Tallinn,Sun 2:25 am,32 °F
-Canberra,Sun 10:25 am,61 °F
-Los Angeles,Sat 4:25 pm,81 °F
-Tashkent,Sun 4:25 am,55 °F
-Cape Town,Sun 1:25 am,59 °F
-Madrid,Sun 1:25 am,57 °F
-Tegucigalpa,Sat 5:25 pm,77 °F
-Caracas,Sat 7:25 pm,86 °F
-Managua,Sat 5:25 pm,84 °F
-Tehran,Sun 2:55 am,64 °F
-Casablanca,Sun 12:25 am,72 °F
-Manila,Sun 7:25 am,76 °F
-Tokyo,Sun 8:25 am,71 °F
-Chicago,Sat 6:25 pm,71 °F
-Melbourne,Sun 10:25 am,66 °F
-Toronto,Sat 7:25 pm,66 °F
-Copenhagen,Sun 1:25 am,36 °F
-Mexico City,Sat 5:25 pm,70 °F
-Vancouver,Sat 4:25 pm,48 °F
-Dallas,Sat 6:25 pm,78 °F
-Miami,Sat 7:25 pm,79 °F
-Vienna,Sun 1:25 am,37 °F
-Darwin,Sun 8:55 am,84 °F
-Minneapolis,Sat 6:25 pm,62 °F
-Warsaw,Sun 1:25 am,36 °F
-Denver,Sat 5:25 pm,49 °F
-Minsk,Sun 2:25 am,45 °F
-Washington DC,Sat 7:25 pm,67 °F
-Detroit,Sat 7:25 pm,77 °F
-Montevideo,Sat 8:25 pm,57 °F
-Winnipeg,Sat 6:25 pm,50 °F
-Dhaka,Sun 5:25 am,83 °F
-Montréal,Sat 7:25 pm,55 °F
-Yangon,Sun 5:55 am,79 °F
-Doha,Sun 2:25 am,82 °F
-Moscow,Sun 2:25 am,41 °F
-Zagreb,Sun 1:25 am,48 °F
-Dubai,Sun 3:25 am,84 °F
-Mumbai,Sun 4:55 am,85 °F
-Zürich,Sun 1:25 am,39 °F
-Dublin,Sun 12:25 am,54 °F
-Nairobi,Sun 2:25 am,63 °F
+City,Date and Time,Temperature,temp values,temp category
+Accra,Mon 6:01 am,77 °F,77,comfortable
+Edmonton,Mon 12:01 am,39 °F,39,cold
+Nassau,Mon 2:01 am,81 °F,81,hot
+Adelaide,Mon 4:31 pm,62 °F,62,comfortable
+Frankfurt,Mon 8:01 am,50 °F,50,cold
+New Delhi,Mon 11:31 am,73 °F,73,comfortable
+Algiers,Mon 7:01 am,70 °F,70,comfortable
+Guatemala City,Mon 12:01 am,64 °F,64,comfortable
+New Orleans,Mon 1:01 am,70 °F,70,comfortable
+Almaty,Mon 11:01 am,57 °F,57,cold
+Halifax,Mon 3:01 am,52 °F,52,cold
+New York,Mon 2:01 am,67 °F,67,comfortable
+Amman,Mon 9:01 am,63 °F,63,comfortable
+Hanoi,Mon 1:01 pm,86 °F,86,hot
+Oslo,Mon 8:01 am,39 °F,39,cold
+Amsterdam,Mon 8:01 am,55 °F,55,cold
+Harare,Mon 8:01 am,61 °F,61,comfortable
+Ottawa,Mon 2:01 am,68 °F,68,comfortable
+Anadyr,Mon 6:01 pm,7 °F,7,very cold
+Havana,Mon 2:01 am,73 °F,73,comfortable
+Paris,Mon 8:01 am,55 °F,55,cold
+Anchorage,Sun 10:01 pm,38 °F,38,cold
+Helsinki,Mon 9:01 am,28 °F,28,very cold
+Perth,Mon 2:01 pm,59 °F,59,cold
+Ankara,Mon 9:01 am,52 °F,52,cold
+Hong Kong,Mon 2:01 pm,84 °F,84,hot
+Philadelphia,Mon 2:01 am,66 °F,66,comfortable
+Antananarivo,Mon 9:01 am,70 °F,70,comfortable
+Honolulu,Sun 8:01 pm,78 °F,78,comfortable
+Phoenix,Sun 11:01 pm,77 °F,77,comfortable
+Asuncion,Mon 3:01 am,61 °F,61,comfortable
+Houston,Mon 1:01 am,71 °F,71,comfortable
+Prague,Mon 8:01 am,32 °F,32,very cold
+Athens,Mon 9:01 am,62 °F,62,comfortable
+Indianapolis,Mon 2:01 am,46 °F,46,cold
+Reykjavik,Mon 6:01 am,41 °F,41,cold
+Atlanta,Mon 2:01 am,50 °F,50,cold
+Islamabad,Mon 11:01 am,70 °F,70,comfortable
+Rio de Janeiro,Mon 3:01 am,64 °F,64,comfortable
+Auckland,Mon 7:01 pm,68 °F,68,comfortable
+Istanbul,Mon 9:01 am,54 °F,54,cold
+Riyadh,Mon 9:01 am,73 °F,73,comfortable
+Baghdad,Mon 9:01 am,62 °F,62,comfortable
+Jakarta,Mon 1:01 pm,92 °F,92,very hot
+Rome,Mon 8:01 am,52 °F,52,cold
+Bangkok,Mon 1:01 pm,91 °F,91,very hot
+Jerusalem,Mon 9:01 am,64 °F,64,comfortable
+Salt Lake City,Mon 12:01 am,53 °F,53,cold
+Barcelona,Mon 8:01 am,70 °F,70,comfortable
+Johannesburg,Mon 8:01 am,54 °F,54,cold
+San Francisco,Sun 11:01 pm,60 °F,60,cold
+Beijing,Mon 2:01 pm,47 °F,47,cold
+Karachi,Mon 11:01 am,88 °F,88,hot
+San Juan,Mon 2:01 am,81 °F,81,hot
+Beirut,Mon 9:01 am,72 °F,72,comfortable
+Kathmandu,Mon 11:46 am,77 °F,77,comfortable
+San Salvador,Mon 12:01 am,77 °F,77,comfortable
+Belgrade,Mon 8:01 am,45 °F,45,cold
+Kingston,Mon 1:01 am,83 °F,83,hot
+Santiago,Mon 3:01 am,52 °F,52,cold
+Bengaluru,Mon 11:31 am,79 °F,79,comfortable
+Kinshasa,Mon 7:01 am,75 °F,75,comfortable
+Santo Domingo,Mon 2:01 am,81 °F,81,hot
+Berlin,Mon 8:01 am,37 °F,37,cold
+Kiritimati,Mon 8:01 pm,79 °F,79,comfortable
+São Paulo,Mon 3:01 am,52 °F,52,cold
+Bogota,Mon 1:01 am,48 °F,48,cold
+Kolkata,Mon 11:31 am,90 °F,90,very hot
+Seattle,Sun 11:01 pm,51 °F,51,cold
+Boston,Mon 2:01 am,58 °F,58,cold
+Kuala Lumpur,Mon 2:01 pm,86 °F,86,hot
+Seoul,Mon 3:01 pm,59 °F,59,cold
+Brasilia,Mon 3:01 am,66 °F,66,comfortable
+Kuwait City,Mon 9:01 am,71 °F,71,comfortable
+Shanghai,Mon 2:01 pm,66 °F,66,comfortable
+Brisbane,Mon 4:01 pm,80 °F,80,hot
+Kyiv,Mon 9:01 am,39 °F,39,cold
+Singapore,Mon 2:01 pm,91 °F,91,very hot
+Brussels,Mon 8:01 am,57 °F,57,cold
+La Paz,Mon 2:01 am,42 °F,42,cold
+Sofia,Mon 9:01 am,32 °F,32,very cold
+Bucharest,Mon 9:01 am,37 °F,37,cold
+Lagos,Mon 7:01 am,75 °F,75,comfortable
+St. John's,Mon 3:31 am,39 °F,39,cold
+Budapest,Mon 8:01 am,32 °F,32,very cold
+Lahore,Mon 11:01 am,82 °F,82,hot
+Stockholm,Mon 8:01 am,39 °F,39,cold
+Buenos Aires,Mon 3:01 am,64 °F,64,comfortable
+Las Vegas,Sun 11:01 pm,73 °F,73,comfortable
+Suva,Mon 6:01 pm,77 °F,77,comfortable
+Cairo,Mon 9:01 am,70 °F,70,comfortable
+Lima,Mon 1:01 am,65 °F,65,comfortable
+Sydney,Mon 5:01 pm,91 °F,91,very hot
+Calgary,Mon 12:01 am,36 °F,36,cold
+Lisbon,Mon 7:01 am,63 °F,63,comfortable
+Taipei,Mon 2:01 pm,77 °F,77,comfortable
+Canberra,Mon 5:01 pm,86 °F,86,hot
+London,Mon 7:01 am,55 °F,55,cold
+Tallinn,Mon 9:01 am,43 °F,43,cold
+Cape Town,Mon 8:01 am,63 °F,63,comfortable
+Los Angeles,Sun 11:01 pm,66 °F,66,comfortable
+Tashkent,Mon 11:01 am,61 °F,61,comfortable
+Caracas,Mon 2:01 am,84 °F,84,hot
+Madrid,Mon 8:01 am,61 °F,61,comfortable
+Tegucigalpa,Mon 12:01 am,68 °F,68,comfortable
+Casablanca,Mon 7:01 am,64 °F,64,comfortable
+Managua,Mon 12:01 am,79 °F,79,comfortable
+Tehran,Mon 9:31 am,72 °F,72,comfortable
+Chicago,Mon 1:01 am,48 °F,48,cold
+Manila,Mon 2:01 pm,91 °F,91,very hot
+Tokyo,Mon 3:01 pm,68 °F,68,comfortable
+Copenhagen,Mon 8:01 am,48 °F,48,cold
+Melbourne,Mon 5:01 pm,64 °F,64,comfortable
+Toronto,Mon 2:01 am,55 °F,55,cold
+Dallas,Mon 1:01 am,64 °F,64,comfortable
+Mexico City,Mon 12:01 am,63 °F,63,comfortable
+Vancouver,Sun 11:01 pm,50 °F,50,cold
+Dar es Salaam,Mon 9:01 am,75 °F,75,comfortable
+Miami,Mon 2:01 am,80 °F,80,hot
+Vienna,Mon 8:01 am,41 °F,41,cold
+Darwin,Mon 3:31 pm,91 °F,91,very hot
+Minneapolis,Mon 1:01 am,49 °F,49,cold
+Warsaw,Mon 8:01 am,32 °F,32,very cold
+Denver,Mon 12:01 am,51 °F,51,cold
+Minsk,Mon 9:01 am,37 °F,37,cold
+Washington DC,Mon 2:01 am,60 °F,60,cold
+Detroit,Mon 2:01 am,51 °F,51,cold
+Montevideo,Mon 3:01 am,54 °F,54,cold
+Winnipeg,Mon 1:01 am,44 °F,44,cold
+Dhaka,Mon 12:01 pm,90 °F,90,very hot
+Montréal,Mon 2:01 am,64 °F,64,comfortable
+Yangon,Mon 12:31 pm,91 °F,91,very hot
+Doha,Mon 9:01 am,88 °F,88,hot
+Moscow,Mon 9:01 am,41 °F,41,cold
+Zagreb,Mon 8:01 am,37 °F,37,cold
+Dubai,Mon 10:01 am,90 °F,90,very hot
+Mumbai,Mon 11:31 am,82 °F,82,hot
+Zürich,Mon 8:01 am,46 °F,46,cold
+Dublin,Mon 7:01 am,54 °F,54,cold
+Nairobi,Mon 9:01 am,63 °F,63,comfortable
