@@ -69,7 +69,7 @@ app.layout = html.Div([
     html.Div([
         
         # Chart 1
-        html.H3("Top 10 Hottest Cities"),
+        html.H3("Cities Temp Values"),
         dcc.Graph(id='chart1'),
         html.Br(),
         
@@ -88,11 +88,6 @@ app.layout = html.Div([
         html.Div(id='list')
         
     ], style={'width': '70%', 'float': 'right', 'padding': '20px'}),
-    
-    # Footer
-    html.Div([
-        html.P("Made by me")
-    ], style={'clear': 'both', 'textAlign': 'center', 'padding': '20px'})
     
 ])
 
@@ -135,7 +130,7 @@ def update_charts(category, city, slider):
     
     # Make chart 1 - bar chart
     top10 = data.nlargest(10, 'TempValues')
-    chart1 = px.bar(top10, x='City', y='TempValues', title="Top 10 Hottest")
+    chart1 = px.bar(top10, x='City', y='TempValues', title="Hot to Cold")
     
     # Make chart 2 - pie chart
     counts = data['TempCategory'].value_counts()
@@ -199,4 +194,4 @@ def update_charts(category, city, slider):
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)
