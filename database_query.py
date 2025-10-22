@@ -1,119 +1,334 @@
 import sqlite3
 import pandas as pd
 
-# Connect to database 
-def run_query(query):
-    conn = sqlite3.connect("weather.db")
-    df = pd.read_sql_query(query, conn)
-    conn.close()
-    return df
-
-# menu
-def menu():
+# Show menu
+def show_menu():
     print("\n========================================")
-    print("WEATHER DATABASE QUERY TOOL")
+    print("WEATHER QUERY TOOL")
     print("========================================")
-    print("\n1 - View all data")
+    print("1 - View all data")
     print("2 - Filter by category")
     print("3 - Filter by temperature")
-    print("4 - Search by city")
-    print("5 - Show statistics")
-    print("6 - Custom query")
+    print("4 - Search city")
+    print("5 - Show stats")
+    print("6 - Filter by date/time")
+    print("7 - Advanced queries")
+    print("8 - Custom query")
     print("0 - Exit")
     print("========================================")
 
-# Option 1: Show all data
-def all():
-    print("\nHow many rows to show?")
-    num = input("Enter number (default 20): ")
-    
+# Option 1 - View all data
+def view_all():
+    # Ask user how many rows
+    num = input("How many rows? (press Enter for 20): ")
     if num == "":
         num = "20"
     
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
     query = "SELECT * FROM weather LIMIT " + num
-    result = run_query(query)
-    print("\n--- All Weather Data ---")
-    print(result)
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("No data!")
+    else:
+        print("\n--- Data ---")
+        print(result)
 
-# Option 2: Filter by category
-def category():
+# Option 2 - Filter by category
+def filter_category():
+    # Show categories
     print("\nCategories:")
-    print("- very cold")
-    print("- cold")
-    print("- comfortable")
-    print("- hot")
-    print("- very hot")
+    print("  very cold")
+    print("  cold")
+    print("  comfortable")
+    print("  hot")
+    print("  very hot")
     
-    cat = input("\nEnter category: ")
+    # Get user input
+    cat = input("\nPick one: ")
     
-    query = "SELECT * FROM weather WHERE [temp category] = '" + cat + "'"
-    result = run_query(query)
-    print("\n--- Cities in " + cat + " category ---")
-    print(result)
+    # Check if empty
+    if cat == "":
+        print("Nothing entered!")
+        return
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query = "SELECT * FROM weather WHERE TempCategory = '" + cat + "'"
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("No cities in that category!")
+    else:
+        print("\n--- Results ---")
+        print(result)
 
-# Option 3: Filter by temperature 
-def temperature():
-    min_temp = input("Minimum temperature: ")
-    max_temp = input("Maximum temperature: ")
+# Option 3 - Filter by temperature
+def filter_temperature():
+    # Get min temperature
+    min_temp = input("Min temp: ")
     
-    query = "SELECT * FROM weather WHERE [temp values] >= " + min_temp + " AND [temp values] <= " + max_temp
-    result = run_query(query)
-    print("\n--- Cities between " + min_temp + " and " + max_temp + " degrees ---")
-    print(result)
+    # Get max temperature
+    max_temp = input("Max temp: ")
+    
+    # Check if empty
+    if min_temp == "":
+        print("Need min temp!")
+        return
+    if max_temp == "":
+        print("Need max temp!")
+        return
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query = "SELECT * FROM weather WHERE TempValues >= " + min_temp
+    query = query + " AND TempValues <= " + max_temp
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("No cities found!")
+    else:
+        print("\n--- Results ---")
+        print(result)
 
-# Option 4: Search by city
-def city():
-    city = input("Enter city name: ")
+# Option 4 - Search city
+def search_city():
+    # Get city name
+    city = input("City name: ")
     
+    # Check if empty
+    if city == "":
+        print("Nothing entered!")
+        return
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
     query = "SELECT * FROM weather WHERE City LIKE '%" + city + "%'"
-    result = run_query(query)
-    print("\n--- Search results for " + city + " ---")
-    print(result)
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("City not found!")
+    else:
+        print("\n--- Results ---")
+        print(result)
 
-# Option 5: Show statistics
-def stats():
-    query = "SELECT [temp category], COUNT(*) as count, AVG([temp values]) as avg_temp FROM weather GROUP BY [temp category]"
-    result = run_query(query)
-    print("\n--- Temperature Statistics ---")
-    print(result)
+# Option 5 - Show stats
+def show_stats():
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query = "SELECT TempCategory, COUNT(*) as count FROM weather GROUP BY TempCategory"
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("No data!")
+    else:
+        print("\n--- Stats ---")
+        print(result)
+    
+    # Show average too
+    conn = sqlite3.connect("weather.db")
+    query2 = "SELECT AVG(TempValues) as average FROM weather"
+    result2 = pd.read_sql_query(query2, conn)
+    conn.close()
+    
+    print("\nAverage temperature:", result2.iloc[0]['average'])
 
-# Option 6: Custom query
+# Option 6 - Filter by date/time
+def filter_datetime():
+    # Show examples
+    print("Search date/time")
+    print("Examples: 'Mon', 'pm', 'Jan'")
+    
+    # Get user input
+    datetime = input("\nEnter text: ")
+    
+    # Check if empty
+    if datetime == "":
+        print("Nothing entered!")
+        return
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query = "SELECT * FROM weather WHERE DateAndTime LIKE '%" + datetime + "%'"
+    
+    # Run the query
+    result = pd.read_sql_query(query, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result) == 0:
+        print("Nothing found!")
+    else:
+        print("\n--- Results ---")
+        print(result)
+
+# Option 7 - Advanced queries
+def advanced_queries():
+    # First query - cities above average
+    print("\n--- Cities above average temp ---")
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query1 = "SELECT City, TemperatureText, TempValues FROM weather WHERE TempValues > (SELECT AVG(TempValues) FROM weather)"
+    
+    # Run the query
+    result1 = pd.read_sql_query(query1, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result1) == 0:
+        print("No results!")
+    else:
+        print(result1)
+    
+    # Second query - group by category
+    print("\n--- Cities by category ---")
+    
+    # Connect to database again
+    conn = sqlite3.connect("weather.db")
+    
+    # Make the query
+    query2 = "SELECT TempCategory, COUNT(*) as total FROM weather GROUP BY TempCategory"
+    
+    # Run the query
+    result2 = pd.read_sql_query(query2, conn)
+    
+    # Close database
+    conn.close()
+    
+    # Check if empty
+    if len(result2) == 0:
+        print("No results!")
+    else:
+        print(result2)
+
+# Option 8 - Custom query
 def custom_query():
-    print("\nEnter your SQL query:")
-    print("Example: SELECT * FROM weather WHERE [temp values] > 80")
+    # Show help
+    print("\nTable: weather")
+    print("Columns: City, DateAndTime, TemperatureText, TempValues, TempCategory")
+    print("\nExample: SELECT * FROM weather WHERE TempValues > 80")
     
-    query = input("\nQuery: ")
-    result = run_query(query)
-    print("\n--- Query Results ---")
-    print(result)
-
-# Main program
-def main():
-    print("\nWelcome to Weather Query Tool!")
+    # Get user query
+    query = input("\nYour query: ")
     
-    while True:
-        menu()
-        choice = input("\nPick an option: ")
+    # Check if empty
+    if query == "":
+        print("No query!")
+        return
+    
+    # Connect to database
+    conn = sqlite3.connect("weather.db")
+    
+    # Try to run the query
+    try:
+        result = pd.read_sql_query(query, conn)
+        conn.close()
         
-        if choice == "0":
-            print("\nGoodbye!")
-            break
-        elif choice == "1":
-            all()
-        elif choice == "2":
-            category()
-        elif choice == "3":
-            temperature()
-        elif choice == "4":
-            city()
-        elif choice == "5":
-            stats()
-        elif choice == "6":
-            custom_query()
+        # Check if empty
+        if len(result) == 0:
+            print("No results!")
         else:
-            print("\nInvalid choice. Pick 0-6.")
-        
-        input("\nPress Enter to continue...")
+            print("\n--- Results ---")
+            print(result)
+    except:
+        print("Query error!")
+        conn.close()
 
-# Run the program
-main()
+# Main program starts here
+print("\nWeather Query Tool")
+print("Starting...")
+
+# Keep looping until user exits
+while True:
+    # Show the menu
+    show_menu()
+    
+    # Get user choice
+    choice = input("\nPick: ")
+    
+    # Check what they picked
+    if choice == "0":
+        print("\nBye!")
+        break
+    
+    if choice == "1":
+        view_all()
+    
+    if choice == "2":
+        filter_category()
+    
+    if choice == "3":
+        filter_temperature()
+    
+    if choice == "4":
+        search_city()
+    
+    if choice == "5":
+        show_stats()
+    
+    if choice == "6":
+        filter_datetime()
+    
+    if choice == "7":
+        advanced_queries()
+    
+    if choice == "8":
+        custom_query()
+    
+    if choice != "0" and choice != "1" and choice != "2" and choice != "3" and choice != "4" and choice != "5" and choice != "6" and choice != "7" and choice != "8":
+        print("\nPick 0-8.")
+    
+    # Wait for user
+    input("\nPress Enter...")
+
+print("Program ended.")

@@ -1,14 +1,16 @@
 import sqlite3
 import pandas as pd
 
-# ---- File paths ----
+# File names
 CSV_FILE = "weather_data.csv"
 DB_FILE = "weather.db"
 
-# ---- Connect and create table ----
+
+# Connect to database
 conn = sqlite3.connect(DB_FILE)
 cursor = conn.cursor()
 
+# Create the table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS weather (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,10 +22,10 @@ CREATE TABLE IF NOT EXISTS weather (
 )
 """)
 
-# ---- Read CSV and clean ----
+# Read the CSV file
 df = pd.read_csv(CSV_FILE)
 
-# Rename columns from Program 1 to match DB
+# Rename columns to match database
 df = df.rename(columns={
     "Date and Time": "DateAndTime",
     "Temperature": "TemperatureText",
@@ -31,13 +33,20 @@ df = df.rename(columns={
     "temp category": "TempCategory"
 })
 
-# Keep only the needed columns
+# Keep only needed columns
 cols = ["City", "DateAndTime", "TemperatureText", "TempValues", "TempCategory"]
 df = df[cols]
 
-# ---- Write to database ----
+#print("Columns after rename:", df.columns.tolist())
+
+# Import into database
+print("Importing data")
 df.to_sql("weather", conn, if_exists="append", index=False)
 
+# Save changes
 conn.commit()
+
+
+# Close connection
 conn.close()
-print(f"Imported {len(df)} rows into {DB_FILE}")
+print("Import complete")
